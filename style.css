@@ -352,7 +352,8 @@ button:focus-visible {
 
   background-image: url("assets/hero.jpg");
   background-size: cover;
-  background-position: center 40%;
+  background-position: center 65%;
+  background-repeat: no-repeat;
 }
 
 .hero-overlay {
@@ -692,7 +693,94 @@ button:focus-visible {
 ========================= */
 
 .events-section {
+  position: relative;
+  overflow: hidden;
+
   padding: 100px 0;
+}
+
+.section-glow {
+  position: absolute;
+  z-index: -1;
+
+  border-radius: 50%;
+  filter: blur(80px);
+
+  animation: drift 14s ease-in-out infinite;
+}
+
+.section-glow-a {
+  top: -60px;
+  left: -80px;
+
+  width: 320px;
+  height: 320px;
+
+  background: rgba(109, 93, 252, 0.14);
+}
+
+.section-glow-b {
+  bottom: -100px;
+  right: -60px;
+
+  width: 260px;
+  height: 260px;
+
+  background: rgba(74, 222, 128, 0.08);
+
+  animation-delay: -6s;
+}
+
+.section-glow-c {
+  top: 10%;
+  right: -100px;
+
+  width: 340px;
+  height: 340px;
+
+  background: rgba(155, 145, 255, 0.12);
+
+  animation-delay: -3s;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(25px, -20px) scale(1.08); }
+}
+
+
+/* Small floating glass badge with an icon, used as a decorative accent */
+.floating-badge {
+  position: absolute;
+  z-index: 1;
+
+  display: grid;
+  place-items: center;
+
+  width: 46px;
+  height: 46px;
+
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  background: rgba(17, 23, 40, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  color: var(--primary-light);
+  box-shadow: 0 0 24px rgba(109, 93, 252, 0.25);
+
+  animation: float-badge 5s ease-in-out infinite;
+}
+
+.floating-badge-cap {
+  top: 6%;
+  right: 8%;
+}
+
+@keyframes float-badge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 .section-heading {
@@ -766,10 +854,10 @@ button:focus-visible {
   z-index: 1;
 }
 
-.event-image.tech { background: linear-gradient(135deg, #253b68, #172039); }
-.event-image.career { background: linear-gradient(135deg, #49376c, #25213e); }
-.event-image.social { background: linear-gradient(135deg, #255b5e, #192f43); }
-.event-image.competition { background: linear-gradient(135deg, #60402f, #32283a); }
+.event-image.tech { background-image: linear-gradient(135deg, #253b68, #172039); }
+.event-image.career { background-image: linear-gradient(135deg, #49376c, #25213e); }
+.event-image.social { background-image: linear-gradient(135deg, #255b5e, #192f43); }
+.event-image.competition { background-image: linear-gradient(135deg, #60402f, #32283a); }
 
 .event-category {
   display: inline-block;
@@ -840,6 +928,9 @@ button:focus-visible {
 ========================= */
 
 .stats-section {
+  position: relative;
+  overflow: hidden;
+
   padding: 100px 0;
 
   border-top: 1px solid rgba(39, 49, 73, 0.5);
@@ -998,6 +1089,10 @@ button:focus-visible {
 
 @media (max-width: 650px) {
 
+  .floating-badge-cap {
+    display: none;
+  }
+
   .container {
     width: min(100% - 32px, 1160px);
   }
@@ -1110,5 +1205,5 @@ button:focus-visible {
   .button {
     width: 100%;
   }
-   }
+     }
    
