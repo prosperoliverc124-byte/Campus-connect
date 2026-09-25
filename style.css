@@ -341,21 +341,31 @@ button:focus-visible {
 
 .hero {
   position: relative;
-  padding: 110px 0 120px;
+  padding: 130px 0 140px;
   overflow: hidden;
 }
 
-.hero-aurora {
+.hero-bg {
   position: absolute;
-  inset: -20% -10%;
+  inset: 0;
+  z-index: -2;
+
+  background-image: url("assets/hero.jpg");
+  background-size: cover;
+  background-position: center 40%;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
   z-index: -1;
 
+  /* Darkens the left/bottom so text stays readable over the photo,
+     while letting the photo breathe through on the right side. */
   background:
-    radial-gradient(ellipse 55% 45% at 82% 15%, rgba(109, 93, 252, 0.22), transparent 60%),
-    radial-gradient(ellipse 45% 40% at 8% 85%, rgba(59, 130, 246, 0.10), transparent 60%),
-    radial-gradient(ellipse 30% 30% at 60% 100%, rgba(74, 222, 128, 0.05), transparent 60%);
-
-  filter: blur(10px);
+    linear-gradient(100deg, var(--bg) 8%, rgba(8, 11, 22, 0.88) 32%, rgba(8, 11, 22, 0.45) 60%, rgba(8, 11, 22, 0.55) 100%),
+    linear-gradient(0deg, var(--bg) 0%, transparent 30%),
+    radial-gradient(ellipse 45% 55% at 88% 20%, rgba(109, 93, 252, 0.25), transparent 65%);
 }
 
 .hero-grid {
@@ -739,6 +749,21 @@ button:focus-visible {
   justify-content: space-between;
 
   background: linear-gradient(135deg, #27365b, #171f37);
+  background-size: cover;
+  background-position: center;
+}
+
+.event-image.has-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(180deg, rgba(8, 11, 22, 0.55) 0%, rgba(8, 11, 22, 0.05) 45%, rgba(8, 11, 22, 0.65) 100%);
+}
+
+.event-image.has-photo .event-category {
+  position: relative;
+  z-index: 1;
 }
 
 .event-image.tech { background: linear-gradient(135deg, #253b68, #172039); }
@@ -1085,5 +1110,4 @@ button:focus-visible {
   .button {
     width: 100%;
   }
-  }
-    
+}
