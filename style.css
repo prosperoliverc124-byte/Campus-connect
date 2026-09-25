@@ -806,19 +806,126 @@ button:focus-visible {
   font-weight: 600;
 }
 
+.events-grid[hidden] {
+  display: none;
+}
+
 .events-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
+.events-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  margin-bottom: 36px;
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-width: 240px;
+  padding: 0 16px;
+  height: 46px;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  background: rgba(17, 23, 40, 0.6);
+  color: var(--muted);
+
+  transition: border-color 0.2s ease;
+}
+
+.search-field:focus-within {
+  border-color: var(--primary-light);
+}
+
+.search-field input {
+  flex: 1;
+
+  border: none;
+  background: none;
+  outline: none;
+
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+}
+
+.search-field input::placeholder {
+  color: var(--muted);
+}
+
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-pill {
+  padding: 10px 16px;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  background: rgba(17, 23, 40, 0.5);
+  color: var(--muted);
+
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.filter-pill:hover {
+  border-color: #48557a;
+  color: var(--text);
+}
+
+.filter-pill:active {
+  transform: scale(0.94);
+}
+
+.filter-pill.active {
+  border-color: transparent;
+  background: var(--primary);
+  color: white;
+}
+
+.events-empty {
+  padding: 40px 0;
+
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+
+/* =========================
+   EVENT CARD
+========================= */
+
 .event-card {
+  cursor: pointer;
   overflow: hidden;
 
   border: 1px solid var(--border);
   border-radius: var(--radius);
 
   background: var(--surface);
+}
+
+.event-card:focus-visible {
+  outline: 2px solid var(--primary-light);
+  outline-offset: 3px;
 }
 
 .event-card:hover {
@@ -858,6 +965,8 @@ button:focus-visible {
 .event-image.career { background-image: linear-gradient(135deg, #49376c, #25213e); }
 .event-image.social { background-image: linear-gradient(135deg, #255b5e, #192f43); }
 .event-image.competition { background-image: linear-gradient(135deg, #60402f, #32283a); }
+.event-image.arts { background-image: linear-gradient(135deg, #6b3a5e, #2b1f3a); }
+.event-image.sports { background-image: linear-gradient(135deg, #2f5a3f, #1a2b30); }
 
 .event-category {
   display: inline-block;
@@ -1141,8 +1250,7 @@ button:focus-visible {
     padding: 65px 0 80px;
   }
 
-  .hero h1 {
-    font-size: clamp(2.4rem, 11vw, 3.4rem);
+  .hero h1 {font-size: clamp(2.4rem, 11vw, 3.4rem);
     letter-spacing: -1.4px;
   }
 
@@ -1160,6 +1268,29 @@ button:focus-visible {
 
   .floating-card-top { right: -2px; top: 5px; }
   .floating-card-bottom { bottom: 0; left: -2px; }
+
+  .events-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-field {
+    width: 100%;
+  }
+
+  .filter-pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .filter-pill {
+    flex-shrink: 0;
+  }
+
+  .event-modal-panel {
+    max-height: 92vh;
+  }
 
   .events-section,
   .stats-section {
@@ -1205,5 +1336,144 @@ button:focus-visible {
   .button {
     width: 100%;
   }
-     }
-   
+}
+
+
+/* =========================
+   EVENT DETAILS MODAL
+========================= */
+
+.event-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.event-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.event-modal-backdrop {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(5, 7, 14, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.event-modal-panel {
+  position: relative;
+  z-index: 1;
+
+  width: min(560px, 100%);
+  max-height: 88vh;
+
+  overflow-y: auto;
+
+  border: 1px solid rgba(155, 145, 255, 0.2);
+  border-radius: var(--radius);
+
+  background: var(--surface);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+
+  transform: translateY(16px) scale(0.98);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.event-modal.is-open .event-modal-panel {
+  transform: translateY(0) scale(1);
+}
+
+.event-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+
+  width: 36px;
+  height: 36px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: rgba(8, 11, 22, 0.6);
+  backdrop-filter: blur(8px);
+  color: var(--text);
+
+  font-size: 1rem;
+}
+
+.event-modal-close:hover {
+  background: rgba(8, 11, 22, 0.85);
+}
+
+.event-modal-image {
+  min-height: 220px;
+
+  background-size: cover;
+  background-position: center;
+  background-color: #171f37;
+}
+
+.event-modal-body {
+  padding: 30px 28px 32px;
+}
+
+.event-modal-category {
+  display: inline-block;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+  background: rgba(109, 93, 252, 0.16);
+
+  color: var(--primary-light);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.event-modal-body h2 {
+  margin-top: 16px;
+
+  font-size: 1.6rem;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+}
+
+.event-modal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  margin-top: 16px;
+
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.event-modal-body p {
+  margin-top: 20px;
+
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.event-modal-body .button {
+  margin-top: 26px;
+   }
