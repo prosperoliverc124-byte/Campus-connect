@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusConnect — Discover Campus Events</title>
+  <meta name="description" content="Discover events, workshops, and opportunities happening across your campus, all in one place." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+  <!-- Social preview -->
+  <meta property="og:title" content="CampusConnect" />
+  <meta property="og:description" content="Discover events, workshops, and opportunities happening across your campus." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =========================
+       LOADING SCREEN
+  ========================== -->
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loader-content">
+      <div class="loader-ring">
+        <img src="assets/logo.png" alt="CampusConnect" class="loader-logo" />
+      </div>
+      <p class="loader-text">CampusConnect</p>
+      <div class="loader-bar">
+        <div id="loaderProgress" class="loader-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================
+       NAVBAR
+  ========================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+
+      <a href="#home" class="logo">
+        <img src="assets/logo.png" alt="CampusConnect" class="logo-mark" />
+        <span>Campus<span class="logo-accent">Connect</span></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="nav-button">Explore Events</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
+        <span class="menu-icon"></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- =========================
+       HERO
+  ========================== -->
+  <section class="hero" id="home">
+    <div class="hero-aurora" aria-hidden="true"></div>
+
+    <div class="container hero-grid">
+
+      <div class="hero-content">
+        <span class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Built for students, by students
+        </span>
+
+        <h1>
+          Your campus,<br />
+          <span>finally in one place.</span>
+        </h1>
+
+        <p class="hero-description">
+          Workshops, seminars, socials, and opportunities are scattered across a dozen group chats and posters. CampusConnect puts them all in one feed, so you stop finding out about things a week too late.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#events" class="button button-primary">Explore Events</a>
+          <a href="#about" class="button button-secondary">Learn More</a>
+        </div>
+
+        <div class="hero-trust">
+          <div class="trust-avatars" aria-hidden="true">
+            <span>O</span><span>A</span><span>C</span>
+          </div>
+          <p>Discover opportunities.<br /><strong>Connect with your community.</strong></p>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-glow" aria-hidden="true"></div>
+
+        <div class="event-preview">
+          <div class="preview-header">
+            <span class="preview-label">UPCOMING EVENT</span>
+            <span class="live-dot" aria-hidden="true"></span>
+          </div>
+
+          <div class="preview-main">
+            <span class="preview-category">TECH WORKSHOP</span>
+            <h2>Build. Learn.<br />Connect.</h2>
+            <p>Discover new skills and meet students who share your interests.</p>
+
+            <div class="preview-details">
+              <span>◷ 10:00 AM</span>
+              <span>⌖ Campus Hall</span>
+            </div>
+          </div>
+
+          <div class="preview-footer">
+            <span>CampusConnect</span>
+            <span class="preview-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="floating-card floating-card-top">
+          <span class="floating-icon">✦</span>
+          <div>
+            <strong>Explore</strong>
+            <small>New opportunities</small>
+          </div>
+        </div>
+
+        <div class="floating-card floating-card-bottom">
+          <span class="floating-icon">✓</span>
+          <div>
+            <strong>Stay connected</strong>
+            <small>Join campus events</small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================
+       FEATURED EVENTS
+  ========================== -->
+  <section class="events-section" id="events">
+    <div class="container">
+
+      <div class="section-heading">
+        <div>
+          <span class="section-label">DISCOVER &amp; PARTICIPATE</span>
+          <h2>Featured <span>events.</span></h2>
+        </div>
+        <a href="#" class="view-all">View all events →</a>
+      </div>
+
+      <div class="events-grid" id="featuredEvents">
+        <!-- Rendered by script.js -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================
+       STATS
+  ========================== -->
+  <section class="stats-section" id="about">
+    <div class="container">
+
+      <div class="stats-header">
+        <span class="section-label">CAMPUSCONNECT</span>
+        <h2>Your campus. <span>More connected.</span></h2>
+        <p>One place to discover activities, opportunities, and experiences that bring students together.</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <strong>24<span>+</span></strong>
+          <p>Upcoming Events</p>
+        </div>
+        <div class="stat-card">
+          <strong>1.2K<span>+</span></strong>
+          <p>Students Reached</p>
+        </div>
+        <div class="stat-card">
+          <strong>18<span>+</span></strong>
+          <p>Campus Organizers</p>
+        </div>
+        <div class="stat-card">
+          <strong>6<span>+</span></strong>
+          <p>Event Categories</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+  <footer class="footer" id="contact">
+    <div class="container footer-grid">
+
+      <div class="footer-brand">
+        <a href="#home" class="logo">
+          <img src="assets/logo.png" alt="CampusConnect" class="logo-mark" />
+          <span>Campus<span class="logo-accent">Connect</span></span>
+        </a>
+        <p>Discover campus life. Connect with opportunities. Built for students, by students.</p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Explore</h3>
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#about">About</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Community</h3>
+        <a href="#events">Discover Events</a>
+        <a href="#events">Featured Events</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© 2026 CampusConnect. All rights reserved.</span>
+      <span>Built for students, by students.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+    </html>
+  
