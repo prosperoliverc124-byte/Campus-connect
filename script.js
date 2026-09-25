@@ -96,7 +96,7 @@ const featuredEvents = [
     date: "OCT 12, 2026",
     location: "Computer Lab",
     type: "tech",
-    symbol: "</>"
+    image: "assets/event-tech.jpg"
   },
   {
     title: "Campus Career Seminar",
@@ -104,7 +104,7 @@ const featuredEvents = [
     date: "OCT 15, 2026",
     location: "Main Auditorium",
     type: "career",
-    symbol: "↗"
+    image: "assets/event-career.jpg"
   },
   {
     title: "Student Community Meetup",
@@ -112,7 +112,7 @@ const featuredEvents = [
     date: "OCT 18, 2026",
     location: "Student Center",
     type: "social",
-    symbol: "✦"
+    image: "assets/event-social.jpg"
   },
   {
     title: "Campus Innovation Challenge",
@@ -120,7 +120,7 @@ const featuredEvents = [
     date: "OCT 22, 2026",
     location: "Innovation Hub",
     type: "competition",
-    symbol: "★"
+    image: ""
   }
 ];
 
@@ -131,15 +131,33 @@ const featuredEvents = [
 
 const eventsContainer = document.getElementById("featuredEvents");
 
+// Fallback icon shown only when an event has no photo yet
+const typeSymbols = {
+  tech: "</>",
+  career: "↗",
+  social: "✦",
+  competition: "★"
+};
+
 function renderFeaturedEvents() {
   eventsContainer.innerHTML = featuredEvents
     .slice(0, 3)
     .map((event) => {
+      const hasImage = Boolean(event.image);
+
+      const imageStyle = hasImage
+        ? ` style="background-image: url('${event.image}')"`
+        : "";
+
+      const symbolMarkup = hasImage
+        ? ""
+        : `<span class="event-symbol">${typeSymbols[event.type] || ""}</span>`;
+
       return `
         <article class="event-card">
-          <div class="event-image ${event.type}">
+          <div class="event-image ${event.type} ${hasImage ? "has-photo" : ""}"${imageStyle}>
             <span class="event-category">${event.category}</span>
-            <span class="event-symbol">${event.symbol}</span>
+            ${symbolMarkup}
           </div>
 
           <div class="event-body">
