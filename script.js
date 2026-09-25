@@ -75,6 +75,8 @@
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const DURATION = 1400; // ms
 
+  let hasAnimated = false;
+
   function formatValue(rawValue, format) {
     if (format === "k") {
       return `${(rawValue / 1000).toFixed(1)}K`;
@@ -109,19 +111,40 @@
     requestAnimationFrame(tick);
   }
 
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          numbers.forEach(animateNumber);
-          obs.disconnect(); // only ever run once
-        }
-      });
-    },
-    { threshold: 0.4 }
-  );
+  function isInView() {
+    const rect = statsGrid.getBoundingClientRect();
+    // Trigger once the grid's top has entered the lower 85% of the screen —
+    // fires a little early so it feels responsive, not right at the edge.
+    return rect.top < window.innerHeight * 0.85 && rect.bottom > 0;
+  }
 
-  observer.observe(statsGrid);
+  function checkAndRun() {
+    if (hasAnimated) return;
+
+    if (isInView()) {
+      hasAnimated = true;
+      numbers.forEach(animateNumber);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    }
+  }
+
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      checkAndRun();
+      ticking = false;
+    });
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+
+  // Covers the case where the stats section is already visible
+  // on load (short pages, tall/zoomed-out screens, etc.)
+  checkAndRun();
 })();
 
 
@@ -237,4 +260,4 @@ function renderFeaturedEvents() {
 }
 
 renderFeaturedEvents();
-                            
+                          
