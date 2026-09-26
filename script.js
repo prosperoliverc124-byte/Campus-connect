@@ -243,7 +243,7 @@ const allEvents = [
     date: "OCT 22, 2026",
     time: "9:00 AM",
     location: "Innovation Hub",
-    image: "",
+    image: "assets/event-competition.jpg",
     description: "Teams of up to 4 pitch a solution to a real campus problem in front of a panel of judges. Cash prizes for the top 3 teams, and mentorship for every entrant."
   },
   {
@@ -254,7 +254,7 @@ const allEvents = [
     date: "OCT 25, 2026",
     time: "11:00 AM",
     location: "Computer Lab",
-    image: "",
+    image: "assets/event-tech.jpg",
     description: "A full-day intensive covering the basics of machine learning with Python, taught by senior CS students. No prior ML experience required — just some familiarity with Python."
   },
   {
@@ -265,7 +265,7 @@ const allEvents = [
     date: "OCT 28, 2026",
     time: "5:00 PM",
     location: "Innovation Hub",
-    image: "",
+    image: "assets/event-career.jpg",
     description: "Student founders pitch their startups to a room of alumni investors and local entrepreneurs. Open to all students as spectators — free entry, RSVP required."
   },
   {
@@ -276,7 +276,7 @@ const allEvents = [
     date: "NOV 2, 2026",
     time: "4:00 PM",
     location: "Main Quad",
-    image: "",
+    image: "assets/event-arts.jpg",
     description: "Grab a camera or your phone and join a golden-hour walk around campus's most photogenic spots, led by members of the Photography Club. All skill levels welcome."
   },
   {
@@ -287,7 +287,7 @@ const allEvents = [
     date: "NOV 5, 2026",
     time: "3:00 PM",
     location: "Sports Complex",
-    image: "",
+    image: "assets/event-sports.jpg",
     description: "The championship game of this semester's intramural league. Come cheer on your hall or department team — concessions and free t-shirts for the first 100 fans."
   },
   {
@@ -298,7 +298,7 @@ const allEvents = [
     date: "NOV 8, 2026",
     time: "7:00 PM",
     location: "Student Center",
-    image: "",
+    image: "assets/event-social.jpg",
     description: "Music, poetry, comedy — if you've got 5 minutes of material, the stage is yours. Sign-ups open at the door, or reserve a slot in advance online."
   }
 ];
@@ -508,4 +508,4 @@ window.addEventListener("popstate", (event) => {
 })();
 
 renderFeaturedEvents();
-    
+  
