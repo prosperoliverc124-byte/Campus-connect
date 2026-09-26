@@ -1285,6 +1285,9 @@ button:focus-visible {
   }
 
   .filter-pills {
+    width: 100%;
+    min-width: 0;
+
     flex-wrap: nowrap;
     overflow-x: auto;
     padding-bottom: 4px;
